@@ -1,0 +1,22 @@
+$fontsFolder: '../assets/fonts';
+$container-wmax: 1344px;
+$container-wpad: 16px;
+$container-wpad-desk: 40px;
+$breakpoints: (
+    sm: 344px,
+    m: 768px,
+    l: 1024px,
+    xl: 1440px,
+);
+$z-layers: (
+    bottomless-pit: -9999,
+    negative: -1,
+    default: 1,
+    backToTop: 3999,
+    dropdown: 3000,
+    overlay: 4000,
+    header: 5000,
+    modal: 5002,
+    popup: 5005,
+    top: 6000,
+) !default;

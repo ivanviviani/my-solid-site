@@ -1,0 +1,67 @@
+@use 'sass:math';
+@use './variables' as *;
+
+//Calculate rem sizing based on px and default text-base-size
+//usage: rem(24px)
+@function rem($size) {
+    @return math.div($size, $text-base-size) * 1rem;
+}
+
+// Set Z-Index
+// setZ(string){}
+@function setZ($key) {
+    @if map-has-key($z-layers, $key) {
+        @return map-get($z-layers, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $z-layers.";
+    @return null;
+}
+
+//POC: Percentage of container max width
+//Calculate percentual sizing based on px and default container max-width
+//usage: poc(24px)
+@function poc($size, $container: $container-wmax) {
+    @return math.div($size * 100, $container) * 1%;
+}
+
+// replace substring with another string
+// credits: https://css-tricks.com/snippets/sass/str-replace-function/
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace +
+            str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+    @return $string;
+}
+
+// lightness a color
+// usage: lightness(--color-black, 1.2)
+@function lightness($color, $lightnessValue) {
+    $color: str-replace($color, 'var(');
+    $color: str-replace($color, ')');
+    $color-h: var(#{$color + '-h'});
+    $color-s: var(#{$color + '-s'});
+    $color-l: var(#{$color + '-l'});
+    @return hsl($color-h, $color-s, $lightnessValue);
+}
+
+// add alpha to a color
+// usage: alpha(--color-black, 0.8)
+@function alpha($color, $opacity) {
+    $color: str-replace($color, 'var(');
+    $color: str-replace($color, ')');
+    $color-h: var(#{$color + '-h'});
+    $color-s: var(#{$color + '-s'});
+    $color-l: var(#{$color + '-l'});
+    @return hsla($color-h, $color-s, $color-l, $opacity);
+}
+
+// remove units from a number
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return math.div($number, $number * 0 + 1);
+    }
+    @return $number;
+}

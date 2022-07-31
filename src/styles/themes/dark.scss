@@ -1,0 +1,8 @@
+@use '../modules/themes' as *;
+@use '../modules/mixins' as *;
+@use '../modules/functions' as *;
+@use 'sass:map';
+
+[data-theme='dark'] {
+    @include defineColorsHexMap(map.merge($default-theme, $dark-theme));
+}

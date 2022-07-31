@@ -4,8 +4,8 @@ import "./Header.scss";
 const Header: Component = () => {
 
     return <header class="header">
-        <h1>Ivan Viviani</h1>
-        <p>🚀 Welcome to my website!</p>
+        <h1>Welcome to my website!</h1>
+        <p>🔴🟠🟡🟢🔵🟣🟤⚫⚪</p>
     </header>;
 };
 

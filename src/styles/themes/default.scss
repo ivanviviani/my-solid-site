@@ -1,0 +1,7 @@
+@use '../modules/themes' as *;
+@use '../modules/mixins' as *;
+@use '../modules/functions' as *;
+
+[data-theme='default'] {
+    @include defineColorsHexMap($default-theme);
+}

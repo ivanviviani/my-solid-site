@@ -1,0 +1,26 @@
+@use './modules/themes' as *;
+@use './modules/mixins' as *;
+@use './global/normalize';
+@use './global/fonts';
+
+// THEMES
+@use './themes/default.scss';
+@use './themes/dark.scss';
+
+:root,
+html {
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 0.2px;
+    scroll-behavior: smooth;
+    @include defineColorsHexMap($default-theme);
+}
+
+body {
+    overflow-x: hidden;
+    background-color: var(--color-bg);
+    color: var(--color-black);
+    overflow-y: scroll;
+}

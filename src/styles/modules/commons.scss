@@ -1,0 +1,14 @@
+@use './variables' as *;
+@use './functions' as *;
+@use './mixins' as *;
+
+%container {
+    width: 100%;
+    padding: 0 rem($container-wpad);
+    margin: 0 auto;
+
+    @include respond-above(l) {
+        padding: 0 rem($container-wpad-desk);
+        max-width: calc(#{rem($container-wmax)} + #{rem($container-wpad-desk)} * 2);
+    }
+}

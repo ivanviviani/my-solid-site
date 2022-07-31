@@ -1,3 +1,35 @@
+@use '../../../styles/modules/functions.scss' as *;
+@use '../../../styles/modules/mixins.scss' as *;
+
 .header {
-    
+    width: 100%;
+}
+
+canvas.background {
+    & ~ .header {
+        position: absolute;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        margin-top: 32px;
+
+        & > * {
+            grid-column: 2 / span 10;
+            color: var(--color-text);
+            background: alpha(--color-bg, 0.7);
+            padding: 1rem;
+
+            @include respond-above(l) {
+                grid-column: 2 / span 6;
+            }
+
+            & + * {
+                padding-top: 0;
+            }
+        }
+
+        & > h1:first-child {
+            font-size: 22px;
+            font-weight: bold;
+        }
+    }
 }
